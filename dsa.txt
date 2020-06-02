@@ -25,7 +25,7 @@ while running:
     elif user==3:
         print("Enter amount: ")
         addamount=int(input())
-        cash+=amount
+        cash+=addamount
 
     elif user==4:
         print("Enter amount: ")
