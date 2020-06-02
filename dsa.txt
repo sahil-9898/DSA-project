@@ -1,0 +1,26 @@
+print("********************STOCK MARKET SIMULATOR********************\n")
+print()
+from nsetools import Nse
+nse=Nse()
+from pprint import pprint
+
+
+inventory=[]
+cash=10000000
+running=True
+print("Select from the following options\n1. Search stock\n2. View Account Balance\n3. Add funds\n4. Withdraw Funds\n5. Exit\n")
+while running:
+    user=int(input())
+    if user==5:
+        running=False
+        break
+    elif user==1:
+        print("Enter the code for desired stock\n")
+        stockname=input()
+        stockvalidity=nse.is_valid_code(stockname)
+        if stockvalidity==False:
+            print("The code is not valid")
+        else:
+            stockdetails=nse.get_quote(stockname)
+            pprint(stockdetails)
+            
