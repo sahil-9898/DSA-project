@@ -8,8 +8,8 @@ from pprint import pprint
 inventory=[]
 cash=10000000
 running=True
-print("Select from the following options\n1. Search stock\n2. View Account Balance\n3. Add funds\n4. Withdraw Funds\n5. Exit\n")
 while running:
+    print("Select from the following options\n1. Search stock\n2. View Account Balance\n3. Add funds\n4. Withdraw Funds\n5. Exit\n")
     user=int(input())
     if user==5:
         running=False
@@ -22,5 +22,17 @@ while running:
             print("The code is not valid")
         else:
             stockdetails=nse.get_quote(stockname)
-            pprint(stockdetails)
+            print(stockdetails['companyName'],'\n')
+            print(stockdetails['secDate'],'\n')
+            print("Current price: ",stockdetails['buyPrice1'])
+            print("Average price: ",stockdetails['averagePrice'])
+            print("Day High: ",stockdetails['dayHigh'])
+            print("Day Low: ",stockdetails['dayLow'])
+            print("Previous Close: ",stockdetails['previousClose'])
+            print("Year High: ",stockdetails['high52'])
+            print("Year Low: ",stockdetails['low52'],'\n')
             
+
+
+
+
