@@ -9,11 +9,29 @@ inventory=[]
 cash=10000000
 running=True
 while running:
-    print("Select from the following options\n1. Search stock\n2. View Account Balance\n3. Add funds\n4. Withdraw Funds\n5. Exit\n")
+    print("Select from the following options\n1. Search stock\n2. View Account Balance\n3. Add funds\n4. Withdraw Funds\n5. Open Inventory\n6. Exit\n")
     user=int(input())
-    if user==5:
+    
+    if user==6:
         running=False
         break
+
+    elif user==5:
+        print(inventory)
+    
+    elif user==2:
+        print("Your account balance is: ",cash)
+
+    elif user==3:
+        print("Enter amount: ")
+        addamount=int(input())
+        cash+=amount
+
+    elif user==4:
+        print("Enter amount: ")
+        withdrawamount=int(input())
+        cash-=withdrawamount
+
     elif user==1:
         print("Enter the code for desired stock\n")
         stockname=input()
@@ -31,6 +49,27 @@ while running:
             print("Previous Close: ",stockdetails['previousClose'])
             print("Year High: ",stockdetails['high52'])
             print("Year Low: ",stockdetails['low52'],'\n')
+            print("Buy stock (yes/no): ")
+            buy=input()
+            if buy=="no":
+                continue
+            else:
+                print("Enter number of stocks: ")
+                lot=int(input())
+                cost=stockdetails['buyPrice1']
+                totalcost=lot*cost
+                print("Total cost will be: ",totalcost)
+                print("Do you wish to continue? (yes/no): ")
+                trade=input()
+                if trade=="no":
+                    print("Transaction cancelled")
+                    continue
+                else:
+                    if totalcost>cash:
+                        print("Insufficient balance")
+                    else:
+                        cash-=totalcost
+                        inventory.append([stockname,cost,lot])
             
 
 
